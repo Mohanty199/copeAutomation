@@ -1,0 +1,15 @@
+{
+  "actions": [
+    {
+      "id": "action6",
+      "type": "key",
+      "parameters": {},
+      "actions": [
+        {
+          "type": "pause",
+          "duration": 10
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 Feature: Demo Feature
 
-    @demo
+   
     Scenario Outline: Run First Demo feature
         Given Google page is opened
         When  Search with <SearchItem>

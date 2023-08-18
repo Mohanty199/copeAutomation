@@ -14,7 +14,6 @@ Then(/^Click on first search result$/, async () => {
   ele.click();
 });
 Then(/^URL should match(.*)$/, async (expectedURL) => {
-  
   console.log(`ExpectedURL: ${expectedURL}`);
 
   //await expect(browser).toHaveUrl(expectedURL);
@@ -26,3 +25,37 @@ Then(/^URL should match(.*)$/, async (expectedURL) => {
 });
 // ExpectedURL:  https://webdriver.io/
 // ActualURL: https://webdriver.io/
+
+Given(/^A webpage is opened$/, async () => {
+  await browser.url(`/inputs`);
+  await browser.setTimeout({ implicit: 15000, pageLoad: 10000 });
+  await browser.maximizeWindow();
+});
+
+When(/^Perform web Interactios$/, async () => {
+  /**
+   * 1.Input box
+   * Actions:
+   * a. Type into input box
+   * b. Clear the field and type or just add value
+   * c. Click and Type
+   * d. Slow Typing
+   *
+   */
+  //let textField = await $(`[type='number']`);
+  //await textField.setValue(`12345`);
+  //await textField.clearValue();
+  /**addValue()-> It will not clear the value before entering any new value to any input field
+   * but setValue() will clear the previous value and enter the value which is provided
+   */
+  //slow typing
+  // let strNum = `12345`;
+  // await textField.click();
+  // for (let i = 0; i <= strNum.length; i++) {
+  //   await textField.addValue(strNum.charAt(i));
+  //   await browser.keys(strNum.charAt(i))
+  //   await browser.pause(1000);
+  // }
+
+  // await browser.debug();
+});
