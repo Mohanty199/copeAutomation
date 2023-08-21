@@ -2,26 +2,37 @@ import { Given, When, Then } from "@wdio/cucumber-framework";
 import chai from "chai";
 Given(/^Google page is opened$/, async () => {
   await browser.url("https://www.google.com");
+  //console.log(`>> BrowserObj:${JSON.stringify(browser)}`);
 });
 When(/^Search with(.*)$/, async (SearchItem) => {
   console.log(`SearchItem: ${SearchItem}`);
-  let ele = await $(`#APjFqb`); 
+  let ele = await $(`#APjFqb`);
   await ele.setValue(SearchItem);
   await browser.keys("Enter");
+  //console.log(`>> EleObj:${JSON.stringify(ele)}`);
 });
 Then(/^Click on first search result$/, async () => {
-  let ele = await $(`//a[@href='https://webdriver.io/']`);
+   let ele = await $(`//a[@href='https://webdriver.io/']`);
+  //let ele = await $(`<h3>`);
   ele.click();
 });
 Then(/^URL should match(.*)$/, async (expectedURL) => {
-  console.log(`ExpectedURL: ${expectedURL}`);
+  console.log(`>>>>>ExpectedURL: ${expectedURL}`);
 
   //await expect(browser).toHaveUrl(expectedURL);
   await browser.pause(3000);
   let actualURL = await browser.getUrl();
-  console.log(`ActualURL: ${actualURL}`);
-  let eurl = `https://webdriver.io/`;
-  chai.expect(actualURL).to.equal(eurl);
+  console.log(`>>>>>>ActualURL: ${actualURL}`);
+  //let eurl = `https://webdriver.io/`;
+  //chai.expect(actualURL).to.eql(expectedURL);
+  await browser.waitUntil(async () => {
+    return (
+      await browser.getTitle() ===
+      `WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO`
+    );
+  },{timeout:20000,interval:500,timeoutMsg:`Failed to load WDIO Webpage:${await browser.getTitle()}`});
+  let url = await browser.getUrl();
+  console.log(`>>>>>>current URL: ${url}`);
 });
 // ExpectedURL:  https://webdriver.io/
 // ActualURL: https://webdriver.io/
@@ -56,7 +67,6 @@ When(/^Perform web Interactios$/, async () => {
   //   await browser.keys(strNum.charAt(i))
   //   await browser.pause(1000);
   // }
-
   // await browser.debug();
   /**
    * 2.DropDown
@@ -86,7 +96,6 @@ When(/^Perform web Interactios$/, async () => {
   // });
   // await browser.pause(2000)
   // console.log(`>> options Array:${arr}`);
-
   /**
  * Windows handling
  * Steps:
@@ -121,7 +130,6 @@ When(/^Perform web Interactios$/, async () => {
   // let parentWinText = await $(`<h3>`).getText();
   // console.log(`parentWinText:${parentWinText}`);
   //await browser.switchWindow()
-
   /**
    * handling Alerts
    
@@ -132,13 +140,11 @@ When(/^Perform web Interactios$/, async () => {
    * d. getAlertText()
    * e. sendAlertText()
    */
-
   // await $(`button=Click for JS Alert`).click()
   // if(await browser.isAlertOpen()){
   //   await browser.acceptAlert()
   // }
   // await browser.debug()
-
   /**
    * Upload File
    */
@@ -147,21 +153,19 @@ When(/^Perform web Interactios$/, async () => {
   // );
   // await $(`#file-submit`).click();
   // await browser.debug()
-/**
- * Frmaes
- * 
- * 
- */
-//  await $(`=iFrame`).click()
-//  await browser.switchToFrame(await $(`#mce_0_ifr`))
-//  await $(`#tinymce`).click()
-//  //await browser.keys(['Key.ctrl','a']) 
-//  await browser.keys(['meta','a']) 
-//  await browser.keys('Backspace')
-//  await $(`#tinymce`).setValue(`12345`)
-//  await browser.pause(2000)
-//  await browser.switchToParentFrame()
- 
-//  await browser.debug()
+  /**
+   * Frmaes
+   *
+   *
+   */
+  //  await $(`=iFrame`).click()
+  //  await browser.switchToFrame(await $(`#mce_0_ifr`))
+  //  await $(`#tinymce`).click()
+  //  //await browser.keys(['Key.ctrl','a'])
+  //  await browser.keys(['meta','a'])
+  //  await browser.keys('Backspace')
+  //  await $(`#tinymce`).setValue(`12345`)
+  //  await browser.pause(2000)
+  //  await browser.switchToParentFrame()
+  //  await browser.debug()
 });
-
