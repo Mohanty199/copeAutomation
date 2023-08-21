@@ -8,4 +8,4 @@ Feature: Advanced Web Interractions
 
         Examples:
             | TestID          | NumberOfProducts |
-            | AdvWebInt_TC003 | 6                |
+            | AdvWebInt_TC003 |6           |
