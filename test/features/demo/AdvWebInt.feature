@@ -1,6 +1,6 @@
 Feature: Advanced Web Interractions
 
-    @demo
+    # @demo
     Scenario Outline: Different Advanced Web Interactions
         Given Login into inventory webapp
         # Then Inventory page should list <NumberOfProducts> products
